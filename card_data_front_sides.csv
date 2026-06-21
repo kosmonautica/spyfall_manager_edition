@@ -1,0 +1,4 @@
+﻿ScenarioNumber;ScenarioNameDE;RoleNumber;RoleNameDE;ScenarioNameEN;RoleNameEN;ScenarioImage
+1;Daily Standup Meeting;1;Scrum Master;Daily Scrum Meeting;Scrum Master;scenario_placeholder.png
+1;Daily Standup Meeting;2;Developer;Daily Scrum Meeting;Developer;scenario_placeholder.png
+1;Daily Standup Meeting;3;Azubi;Daily Scrum Meeting;Intern;scenario_placeholder.png
