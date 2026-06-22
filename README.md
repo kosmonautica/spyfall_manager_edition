@@ -53,14 +53,14 @@ PDFtk wird benötigt, um das doppelseitige PDF zu erzeugen.
 
 - Download: https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
 - Standard-Installationspfad: `C:\Program Files (x86)\PDFtk\bin\pdftk.exe`
-- Falls PDFtk an einem anderen Ort installiert wird, den Pfad in `generate_cards.bat` anpassen
+- Falls PDFtk an einem anderen Ort installiert wird, den Pfad in `start_card_generation.bat` anpassen
 
 ### Karten generieren
 
-Im Projektordner die Datei `generate_cards.bat` doppelklicken oder in der Kommandozeile ausführen:
+Im Projektordner die Datei `start_card_generation.bat` doppelklicken oder in der Kommandozeile ausführen:
 
 ```
-generate_cards.bat
+start_card_generation.bat
 ```
 
 Die generierten PDFs landen im Ordner `output/`:
@@ -83,7 +83,7 @@ Für doppelseitigen Druck das `_doublesided.pdf` verwenden: ungerade Seiten sind
 2. Neue Zeilen für jede Rolle des Szenarios ergänzen (neue `ScenarioNumber`)
 3. Eine weitere Zeile mit `ScenarioNumber` = `99` und leerem `RoleNameDE` hinzufügen (Manager-Karte)
 4. Ein passendes Hintergrundbild in `images/` ablegen und in `ScenarioImage` eintragen
-5. `generate_cards.bat` ausführen
+5. `start_card_generation.bat` ausführen
 
 Das Skript liest alle CSV-Zeilen automatisch ein — keine Code-Änderung nötig.
 
@@ -92,8 +92,8 @@ Das Skript liest alle CSV-Zeilen automatisch ein — keine Code-Änderung nötig
 ## Projektstruktur
 
 ```
-generate_cards.bat         # Einziger Einstiegspunkt für Kartengenerierung
-generate_cards.rb          # Ruby/Squib-Skript
+start_card_generation.bat  # Einziger Einstiegspunkt für Kartengenerierung
+card_generator.rb          # Ruby/Squib-Skript
 card_data_front_sides.csv  # Spielinhalte (Szenarien, Rollen, Bilder)
 images/                    # Hintergrundbilder und Kartenrückseite
 output/                    # Generierte PDFs (nicht im Repository)

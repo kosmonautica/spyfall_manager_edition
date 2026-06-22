@@ -23,6 +23,42 @@
 3;Firmenweihnachtsfeier;3;Die Affäre / Seitensprung;Corporate Christmas Party;The affaire;background_christmas_party.png
 3;Firmenweihnachtsfeier;3;Langjährige Mitarbeiterin;Corporate Christmas Party;Long term employee;background_christmas_party.png
 ;;;;;;
+4;Aufsichtsratssitzung;1;CEO;Board Meeting;CEO;background_board_meeting.png
+4;Aufsichtsratssitzung;2;CFO;Board Meeting;CFO;background_board_meeting.png
+4;Aufsichtsratssitzung;3;CTO;Board Meeting;CTO;background_board_meeting.png
+4;Aufsichtsratssitzung;4;CIO;Board Meeting;CIO;background_board_meeting.png
+4;Aufsichtsratssitzung;5;CHRO;Board Meeting;CHRO;background_board_meeting.png
+4;Aufsichtsratssitzung;6;Executive Assistant;Board Meeting;Executive Assistant;background_board_meeting.png
+4;Aufsichtsratssitzung;7;Haustechniker für Meetingraum-Technik;Board Meeting;Technician for meeting room infrastructure;background_board_meeting.png
+;;;;;;
+5;Kantinen-Mittagspause;1;Azubi;Lunch Break;Intern;background_lunch_break.png
+5;Kantinen-Mittagspause;2;Servicekraft;Lunch Break;Service staff;background_lunch_break.png
+5;Kantinen-Mittagspause;3;Flurfunkerin;Lunch Break;Gossip girl;background_lunch_break.png
+5;Kantinen-Mittagspause;4;Der Introvertierte;Lunch Break;The introvert;background_lunch_break.png
+5;Kantinen-Mittagspause;5;Die Dauer-Telefoniererin;Lunch Break;The non-stop-phoner;background_lunch_break.png
+5;Kantinen-Mittagspause;6;Der Mainsplainer;Lunch Break;The Mainsplainer;background_lunch_break.png
+5;Kantinen-Mittagspause;7;Koch;Lunch Break;Chef;background_lunch_break.png
+;;;;;;
+6;ISO-Audit;1;Azubi;Lunch Break;Intern;background_iso_audit.png
+6;ISO-Audit;2;Auditor;Lunch Break;Auditor;background_iso_audit.png
+6;ISO-Audit;3;QMB - Qualitätsmanagmentbeauftragte;Lunch Break;Quality Management Represantitive;background_iso_audit.png
+6;ISO-Audit;4;Projektmitarbeiterin;Lunch Break;Project team member;background_iso_audit.png
+6;ISO-Audit;5;Der nicht auditierte externe Kollege;Lunch Break;The unaudited external colleague;background_iso_audit.png
+6;ISO-Audit;6;Der schon innerlich gekündigte Kollege;Lunch Break;The colleague who has already mentally checked out;background_iso_audit.png
+6;ISO-Audit;7;Projektleiter;Lunch Break;Project Manager;background_iso_audit.png
+;;;;;;
+7;Brandschutzübung;1;Brandschutzbeauftrager;Fire Drill;Fire Protection Represantitive;background_fire_drill.png
+7;Brandschutzübung;2;Der Desorientierte;Fire Drill;The Disoriented Colleague;background_fire_drill.png
+7;Brandschutzübung;3;Developer mit Noise-Cancelling Kopfhörer;Fire Drill;Developer with Noise-Cancelling Headphones;background_fire_drill.png
+7;Brandschutzübung;4;Ersthelferin;Fire Drill;First Aider;background_fire_drill.png
+7;Brandschutzübung;5;Azubi;Fire Drill;Trainee;background_fire_drill.png
+7;Brandschutzübung;6;Der Feuerübungs-Verweigerer;Fire Drill;The Fire Drill Refuser;background_fire_drill.png
+7;Brandschutzübung;7;Der Typ im Zoom Meeting aus dem Home Office;Fire Drill;The Guy in the Zoom Meeting from Home Office;background_fire_drill.png
+;;;;;;
+99;Du bist der Manager;1;;You are the Manager;;background_managerDE.png
+99;Du bist der Manager;1;;You are the Manager;;background_managerDE.png
+99;Du bist der Manager;1;;You are the Manager;;background_managerDE.png
+99;Du bist der Manager;1;;You are the Manager;;background_managerDE.png
 99;Du bist der Manager;1;;You are the Manager;;background_managerDE.png
 99;Du bist der Manager;1;;You are the Manager;;background_managerDE.png
 99;Du bist der Manager;1;;You are the Manager;;background_managerDE.png

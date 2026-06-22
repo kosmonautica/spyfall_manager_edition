@@ -41,15 +41,6 @@ class TestCardData < Minitest::Test
     assert regulaere.size > 0, "Keine regulären Rollen-Karten gefunden"
   end
 
-  def test_manager_karten_haben_leere_rolle
-    manager = @data.select { |row| row['ScenarioNumber'] == '99' }
-    assert manager.size > 0, "Keine Manager-Karten (ScenarioNumber 99) gefunden"
-    manager.each_with_index do |row, i|
-      assert row['RoleNameDE'].nil? || row['RoleNameDE'].empty?,
-             "Manager-Karte #{i + 1}: RoleNameDE sollte leer sein, ist aber '#{row['RoleNameDE']}'"
-    end
-  end
-
   def test_manager_karten_haben_keine_rollenbox
     @data.select { |row| row['ScenarioNumber'] == '99' }.each_with_index do |row, i|
       role = row['RoleNameDE'] || ''
@@ -60,8 +51,8 @@ class TestCardData < Minitest::Test
 
   def test_skript_laeuft_ohne_fehler_und_warnungen
     output = `#{RbConfig.ruby} card_generator.rb 2>&1`
-    assert $?.success?, "generate_cards.rb endete mit Fehler:\n#{output}"
-    refute_match(/WARN/i,  output, "generate_cards.rb gab Warnungen aus:\n#{output}")
-    refute_match(/error/i, output, "generate_cards.rb gab Fehler aus:\n#{output}")
+    assert $?.success?, "card_generator.rb endete mit Fehler:\n#{output}"
+    refute_match(/WARN/i,  output, "card_generator.rb gab Warnungen aus:\n#{output}")
+    refute_match(/error/i, output, "card_generator.rb gab Fehler aus:\n#{output}")
   end
 end

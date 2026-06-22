@@ -73,11 +73,29 @@ Standard-Pokerkarte im **Landscape-Format**: 88,9 × 63,5 mm → 1050 × 750 px 
 ```
 start_card_generation.bat  # Einziger Einstiegspunkt für Kartengenerierung (Windows)
 card_generator.rb          # Ruby/Squib-Skript: erzeugt Vorder- und Rückseiten-PDF
+layout.yml                 # Squib-Layout-Definitionen: alle Positionen, Größen, Farben, Fonts
 card_data_front_sides.csv  # Kerndaten für alle Karten
-test/test_card_data.rb     # Minitest-Suite (5 Tests)
+test/test_card_data.rb     # Minitest-Suite (7 Tests)
 images/                    # Alle Bilder (Hintergründe, Rückseite, Sketches)
 output/                    # Generierte PDFs (nicht committen)
 ```
+
+## Layout-System
+
+Alle statischen Designwerte (Positionen, Größen, Farben, Fonts) stehen in `layout.yml` als benannte Squib-Layouts:
+
+| Layout-Name | Beschreibung |
+|---|---|
+| `card_background` | Hintergrundbild, füllt die ganze Karte |
+| `scenario_number_box` | Kleine Sepia-Box oben links (Szenario-Nummer) |
+| `scenario_name_box` | Große Sepia-Box oben daneben (Szenario-Name) |
+| `scenario_number_text` | Text in der Nummern-Box |
+| `scenario_name_text` | Text in der Name-Box |
+| `role_name_text` | Text in der Rollen-Box unten |
+
+Die Rollen-Box selbst hat keine feste Layout-Definition, da ihre Position, Größe und Farbe kartenabhängig berechnet werden (dynamisch aus den CSV-Daten). Nur die festen Werte (`stroke_color`, `stroke_width`, `radius`) sind im Skript direkt gesetzt.
+
+Squib lädt das Layout mit `Squib::Deck.new(layout: 'layout.yml')`. Einzelne Befehle referenzieren ein Layout mit `layout: :name`. Per-Karte-Werte im Ruby-Code überschreiben dabei die YAML-Defaults.
 
 ## Wichtige Konventionen
 

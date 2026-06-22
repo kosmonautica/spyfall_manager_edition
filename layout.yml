@@ -1,0 +1,56 @@
+# Squib Layout-Definitionen für Spyfall: Manager Edition
+# Pokerkarte Landscape: 88.9mm × 63.5mm → 1050 × 750 px bei 300 dpi
+
+card_background:
+  x: 0
+  y: 0
+  width: 1050
+  height: 750
+
+scenario_number_box:
+  x: 20
+  y: 20
+  width: 60
+  height: 60
+  fill_color: '#c8a882'
+  stroke_color: '#c8a882'
+  stroke_width: 0
+  radius: 4
+
+scenario_name_box:
+  x: 90
+  y: 20
+  width: 940
+  height: 60
+  fill_color: '#c8a882'
+  stroke_color: '#c8a882'
+  stroke_width: 0
+  radius: 4
+
+scenario_number_text:
+  x: 20
+  y: 20
+  width: 60
+  height: 60
+  font: 'Courier New 10'
+  color: 'black'
+  align: 'center'
+  valign: 'middle'
+
+scenario_name_text:
+  x: 100
+  y: 24
+  width: 920
+  height: 52
+  font: 'Courier New Bold 13'
+  color: 'black'
+  align: 'left'
+  valign: 'middle'
+  ellipsize: 'autoscale'
+
+role_name_text:
+  x: 30
+  font: 'Courier New 9'
+  color: 'black'
+  align: 'left'
+  valign: 'middle'
