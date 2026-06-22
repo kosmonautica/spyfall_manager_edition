@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ruby *)",
+      "Bash(ruby.exe --version)",
+      "Bash(cmd.exe /c \"ruby --version\")",
+      "Bash(cmd.exe *)",
+      "Bash(/mnt/c/Ruby34-x64/bin/ruby *)",
+      "Read(//usr/bin/**)",
+      "Read(//usr/local/bin/**)",
+      "Bash(command -v ruby.exe)",
+      "Bash(/mnt/c/Ruby33-x64/bin/ruby.exe *)"
+    ]
+  }
+}

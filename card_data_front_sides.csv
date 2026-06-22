@@ -1,4 +1,28 @@
 ﻿ScenarioNumber;ScenarioNameDE;RoleNumber;RoleNameDE;ScenarioNameEN;RoleNameEN;ScenarioImage
-1;Daily Standup Meeting;1;Scrum Master;Daily Scrum Meeting;Scrum Master;scenario_placeholder.png
-1;Daily Standup Meeting;2;Developer;Daily Scrum Meeting;Developer;scenario_placeholder.png
-1;Daily Standup Meeting;3;Azubi;Daily Scrum Meeting;Intern;scenario_placeholder.png
+1;Daily Standup Meeting;1;Scrum Master;Daily Scrum Meeting;Scrum Master;background_daily_standup.png
+1;Daily Standup Meeting;2;Developer;Daily Scrum Meeting;Developer;background_daily_standup.png
+1;Daily Standup Meeting;3;Product Owner;Daily Scrum Meeting;Product Owner;background_daily_standup.png
+1;Daily Standup Meeting;4;Tester;Daily Scrum Meeting;Tester;background_daily_standup.png
+1;Daily Standup Meeting;5;Stakeholder;Daily Scrum Meeting;Stakeholder;background_daily_standup.png
+1;Daily Standup Meeting;6;Azubi;Daily Scrum Meeting;Intern;background_daily_standup.png
+1;Daily Standup Meeting;7;UX Specialist;Daily Scrum Meeting;UX Specialist;background_daily_standup.png
+;;;;;;
+2;Kündigungsgespräch;1;Gekündigter Mitarbeiter;Layoff Meeting;Employee to be laid off;background_layoff_meeting.png
+2;Kündigungsgespräch;2;HR Mitarbeiterin;Layoff Meeting;HR Business Partner;background_layoff_meeting.png
+2;Kündigungsgespräch;3;Betriebsratsmitglied;Layoff Meeting;Works Council Member;background_layoff_meeting.png
+2;Kündigungsgespräch;4;Anwalt;Layoff Meeting;Lawyer;background_layoff_meeting.png
+2;Kündigungsgespräch;5;Gleichstellungsbeauftragter;Layoff Meeting;Diversity-Equality-Inclusion Concil Member;background_layoff_meeting.png
+2;Kündigungsgespräch;6;Externer Outplacement-Beraterin;Layoff Meeting;External Outplacement Consultant;background_layoff_meeting.png
+2;Kündigungsgespräch;7;Azubi in HR-Abteilung;Layoff Meeting;Intern in HR;background_layoff_meeting.png
+;;;;;;
+3;Firmenweihnachtsfeier;1;Mitarbeiter im Weihnachtsmannkostüm;Corporate Christmas Party;The guy dressed as Santa Claus;background_christmas_party.png
+3;Firmenweihnachtsfeier;2;Die angetrunkene Person;Corporate Christmas Party;Drunk colleague;background_christmas_party.png
+3;Firmenweihnachtsfeier;3;Neuling, der eigentlich erst am 01.01. startet;Corporate Christmas Party;Pre-start new hire who officially starts Jan 1st;background_christmas_party.png
+3;Firmenweihnachtsfeier;3;Caterer;Corporate Christmas Party;Caterer;background_christmas_party.png
+3;Firmenweihnachtsfeier;3;Von extern engagierter Zauberer;Corporate Christmas Party;Hired magician;background_christmas_party.png
+3;Firmenweihnachtsfeier;3;Die Affäre / Seitensprung;Corporate Christmas Party;The affaire;background_christmas_party.png
+3;Firmenweihnachtsfeier;3;Langjährige Mitarbeiterin;Corporate Christmas Party;Long term employee;background_christmas_party.png
+;;;;;;
+99;Du bist der Manager;1;;You are the Manager;;background_managerDE.png
+99;Du bist der Manager;1;;You are the Manager;;background_managerDE.png
+99;Du bist der Manager;1;;You are the Manager;;background_managerDE.png
