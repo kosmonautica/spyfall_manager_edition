@@ -69,15 +69,6 @@ class TestCardData < Minitest::Test
       zeile = "Zeile #{i + 2} (back_sides)"
       assert row['Language']     && !row['Language'].empty?,     "#{zeile}: Language fehlt"
       assert row['BacksideText'] && !row['BacksideText'].empty?, "#{zeile}: BacksideText fehlt"
-      assert row['BacksideImage']&& !row['BacksideImage'].empty?,"#{zeile}: BacksideImage fehlt"
-    end
-  end
-
-  def test_rueckseiten_bilder_existieren
-    @back.each_with_index do |row, i|
-      bild = "images/#{row['BacksideImage']}"
-      skip "#{bild} fehlt noch (bitte Bild erstellen)" unless File.exist?(bild)
-      assert File.exist?(bild), "back_sides Zeile #{i + 2}: Bild nicht gefunden -> #{bild}"
     end
   end
 

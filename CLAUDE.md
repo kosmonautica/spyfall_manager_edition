@@ -107,8 +107,11 @@ All static design values (positions, sizes, colors, fonts) are stored in `layout
 | `scenario_number_text` | Text in the number box |
 | `scenario_name_text` | Text in the name box |
 | `role_name_text` | Text in the role box at the bottom |
+| `backside_text` | Centered, rotated text on the back side |
 
 The role box itself has no fixed layout definition because its position, size, and color are computed dynamically per card from the CSV data. Only the fixed values (`stroke_color`, `stroke_width`, `radius`) are set directly in the script.
+
+**Back side text centering:** `backside_text` uses a reduced bounding box (800×300 px) centered around the card midpoint (525, 375) via `x: 125, y: 225`. This compensates for Squib rotating around the top-left anchor `(x, y)` rather than the box center — using the full card size (1050×750) would shift the rotated text off-center.
 
 Squib loads the layout with `Squib::Deck.new(layout: 'layout.yml')`. Individual commands reference a layout with `layout: :name`. Per-card values in the Ruby code override the YAML defaults.
 

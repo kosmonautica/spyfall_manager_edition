@@ -14,7 +14,20 @@
       "WebFetch(domain:squib.readthedocs.io)",
       "WebFetch(domain:squib.rocks)",
       "WebFetch(domain:github.com)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(git add *)",
+      "Bash(git rm *)",
+      "Bash(git reset *)",
+      "Bash(xargs -I{} sh -c 'echo \"$\\(du -sh {} | cut -f1\\) {}\"')",
+      "Bash(python3 -c ' *)",
+      "Bash(identify /mnt/c/Users/kosmo/Documents/github/spyfall_manager_edition/images/*.png)",
+      "Bash(awk '{print $3, $1}')",
+      "Bash(convert --version)",
+      "Bash(magick --version)",
+      "Bash(python3 -c \"from PIL import Image; print\\('PIL ok'\\)\")",
+      "Bash(pip install *)",
+      "Bash(pip3 install *)",
+      "Bash(sudo apt-get install -y imagemagick)"
     ]
   }
 }

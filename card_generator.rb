@@ -53,7 +53,7 @@ LANGUAGES.each do |lang|
   role_col = "RoleName#{lang}"
   back     = back_data[lang]
   abort "ERROR: No backside data for language '#{lang}' in card_data_back_sides.csv" unless back
-  abort "ERROR: Backside image not found: #{back[:image]}" unless File.exist?(back[:image])
+  abort "ERROR: Backside text missing for language '#{lang}'" if back[:text].nil? || back[:text].strip.empty?
 
   front_file = "spyfall_manager_edition_frontsides_#{lang}.pdf"
   back_file  = "spyfall_manager_edition_backsides_#{lang}.pdf"
@@ -101,8 +101,8 @@ LANGUAGES.each do |lang|
   # rtl: true mirrors the card layout horizontally so front and back sides
   # align correctly when printing duplex (flip on long edge)
   Squib::Deck.new(cards: n, width: CARD_WIDTH, height: CARD_HEIGHT, layout: 'layout.yml') do
-    png layout: :card_background,
-        file: back[:image]
+    background color: 'white'
+    text layout: :backside_text, str: back[:text]
     save_pdf file: back_file, dir: 'output', rtl: true, **PDF_OPTS
   end
 

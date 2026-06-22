@@ -54,3 +54,16 @@ role_name_text:
   color: 'black'
   align: 'left'
   valign: 'middle'
+
+# --- Back side ---
+
+backside_text:
+  x: 125
+  y: 225
+  width: 800
+  height: 300
+  font: 'Courier New Bold 14'
+  color: '#555555'
+  align: 'center'
+  valign: 'middle'
+  angle: -0.28
