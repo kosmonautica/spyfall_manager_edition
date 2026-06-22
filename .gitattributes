@@ -1,0 +1,10 @@
+# Alle Textdateien im Repository mit LF speichern
+* text=auto eol=lf
+
+# Batch-Dateien explizit mit CRLF (Windows erwartet das)
+*.bat text eol=crlf
+
+# Binärdateien nicht anfassen
+*.png binary
+*.jpg binary
+*.pdf binary

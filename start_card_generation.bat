@@ -1,10 +1,28 @@
 @echo off
-rem Kartengenerierung: Vorderseiten, Rueckseiten und Double-Sided in einem Schritt.
-rem PDFtk shuffelt die Seiten alternierend (V1 R1 V2 R2 ...) fuer doppelseitigen Druck.
+rem Card generation: front sides, back sides and double-sided PDF in one step.
+rem PDFtk shuffles pages alternating (F1 B1 F2 B2 ...) for duplex printing.
+rem Back sides are saved with rtl:true in Squib so card positions are mirrored
+rem horizontally -- this ensures front and back sides align correctly when
+rem printing duplex (flip on long edge) on a portrait A4 sheet with landscape cards.
+rem
+rem Usage:
+rem   start_card_generation.bat          -> both languages (DE + EN)
+rem   start_card_generation.bat DE       -> German only
+rem   start_card_generation.bat EN       -> English only
+rem   start_card_generation.bat both     -> both languages (explicit)
 
-call ruby card_generator.rb
+set LANG=%~1
+if "%LANG%"=="" set LANG=both
+
+echo [1/2] Generating cards (%LANG%) ...
+if /I "%LANG%"=="DE"   echo  -> Language: DE
+if /I "%LANG%"=="EN"   echo  -> Language: EN
+if /I "%LANG%"=="BOTH" echo  -> Language: DE
+if /I "%LANG%"=="BOTH" echo  -> Language: EN
+call ruby card_generator.rb %LANG%
 if %errorlevel% neq 0 (
-    echo FEHLER bei der Kartengenerierung
+    echo ERROR: Card generation failed.
+    echo Hint: If a PDF could not be written, make sure it is not open in a PDF viewer.
     pause
     exit /b 1
 )
@@ -12,19 +30,48 @@ if %errorlevel% neq 0 (
 set PDFTK="C:\Program Files (x86)\PDFtk\bin\pdftk.exe"
 
 if not exist %PDFTK% (
-    echo FEHLER: PDFtk nicht gefunden unter %PDFTK%
-    echo Bitte PDFtk installieren: https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
+    echo ERROR: PDFtk not found at %PDFTK%
+    echo Please install PDFtk: https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
     pause
     exit /b 1
 )
 
-if exist output\spyfall_manager_edition_doublesided.pdf del output\spyfall_manager_edition_doublesided.pdf
+if /I "%LANG%"=="DE" goto doublesided_de
+if /I "%LANG%"=="EN" goto doublesided_en
+goto doublesided_both
 
-%PDFTK% A="output\spyfall_manager_edition_frontsides.pdf" B="output\spyfall_manager_edition_backsides.pdf" shuffle output "output\spyfall_manager_edition_doublesided.pdf"
+:doublesided_de
+echo [2/2] Creating double-sided PDF (DE) ...
+cd output
+if exist spyfall_manager_edition_doublesided_DE.pdf del spyfall_manager_edition_doublesided_DE.pdf
+call %PDFTK% A="spyfall_manager_edition_frontsides_DE.pdf" B="spyfall_manager_edition_backsides_DE.pdf" shuffle output "spyfall_manager_edition_doublesided_DE.pdf"
+if %errorlevel% == 0 (echo Done! DE PDF created.) else (echo ERROR: Failed to create DE PDF. Check if the file is still open in a PDF viewer. & cd .. & pause & exit /b 1)
+cd ..
+goto end
 
-if %errorlevel% == 0 (
-    echo Fertig! Alle 3 PDFs in output\ erstellt.
-) else (
-    echo FEHLER beim Erstellen von spyfall_manager_edition_doublesided.pdf
-    pause
-)
+:doublesided_en
+echo [2/2] Creating double-sided PDF (EN) ...
+cd output
+if exist spyfall_manager_edition_doublesided_EN.pdf del spyfall_manager_edition_doublesided_EN.pdf
+call %PDFTK% A="spyfall_manager_edition_frontsides_EN.pdf" B="spyfall_manager_edition_backsides_EN.pdf" shuffle output "spyfall_manager_edition_doublesided_EN.pdf"
+if %errorlevel% == 0 (echo Done! EN PDF created.) else (echo ERROR: Failed to create EN PDF. Check if the file is still open in a PDF viewer. & cd .. & pause & exit /b 1)
+cd ..
+goto end
+
+:doublesided_both
+if exist output\spyfall_manager_edition_doublesided_DE.pdf del output\spyfall_manager_edition_doublesided_DE.pdf
+if exist output\spyfall_manager_edition_doublesided_EN.pdf del output\spyfall_manager_edition_doublesided_EN.pdf
+cd output
+
+echo [2/3] Creating double-sided PDF (DE) ...
+call %PDFTK% A="spyfall_manager_edition_frontsides_DE.pdf" B="spyfall_manager_edition_backsides_DE.pdf" shuffle output "spyfall_manager_edition_doublesided_DE.pdf"
+if %errorlevel% neq 0 (echo ERROR: Failed to create DE PDF. Check if the file is still open in a PDF viewer. & cd .. & pause & exit /b 1)
+
+echo [3/3] Creating double-sided PDF (EN) ...
+call %PDFTK% A="spyfall_manager_edition_frontsides_EN.pdf" B="spyfall_manager_edition_backsides_EN.pdf" shuffle output "spyfall_manager_edition_doublesided_EN.pdf"
+if %errorlevel% neq 0 (echo ERROR: Failed to create EN PDF. Check if the file is still open in a PDF viewer. & cd .. & pause & exit /b 1)
+
+cd ..
+echo Done! DE + EN - 3 PDFs each created in output\
+
+:end

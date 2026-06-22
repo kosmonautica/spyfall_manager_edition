@@ -2,105 +2,124 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Projekt-Überblick
+## Project Overview
 
-**Spyfall: Manager Edition** — ein Kartenspiel auf Basis des Originals Spyfall, aber mit Firmen-Setting. Statt eines Spions gibt es einen Manager, der in einem Meeting landet, ohne zu wissen worum es geht, und es trotzdem vortäuschen muss.
+**Spyfall: Manager Edition** — a card game based on the original Spyfall, set in a corporate environment. Instead of a spy, there is a Manager who ends up in a meeting without knowing what it is about and has to pretend otherwise.
 
-Die Karten werden mit **Ruby und dem Squib-Gem** generiert. Aktuell wird nur die **deutschsprachige Version** gebaut (DE-Spalten der CSV).
+Cards are generated using **Ruby and the Squib gem**. Both a **German (DE)** and an **English (EN)** version are built by default.
 
-## Karten generieren
+## Generating Cards
 
-Kartengenerierung ausschließlich über die Batch-Datei starten (Windows):
+Card generation is started exclusively via the batch file (Windows):
 
 ```
-start_card_generation.bat
+start_card_generation.bat [DE|EN|both]
 ```
 
-Das Skript:
-1. Ruft `ruby card_generator.rb` auf → erzeugt Vorderseiten- und Rückseiten-PDF
-2. Ruft PDFtk auf → erzeugt doppelseitiges PDF durch Shufflen der Seiten
+Optional parameter: `DE`, `EN`, or `both` (default). Without a parameter, both languages are built.
 
-Ausgabe in `output/`:
-- `spyfall_manager_edition_frontsides.pdf`
-- `spyfall_manager_edition_backsides.pdf`
-- `spyfall_manager_edition_doublesided.pdf`
+The script:
+1. Calls `ruby card_generator.rb [lang]` → generates front and back side PDFs per language
+2. Calls PDFtk → creates a double-sided PDF per language by shuffling pages
 
-## Tests ausführen
+**Duplex alignment:** Back side PDFs are generated with `rtl: true` in Squib, which mirrors the card layout horizontally. This ensures front and back sides align correctly when printing duplex (flip on long edge) on a portrait A4 sheet with landscape cards. No PDFtk rotation step is needed.
+
+Output in `output/` (per language):
+- `spyfall_manager_edition_frontsides_DE.pdf` / `_EN.pdf`
+- `spyfall_manager_edition_backsides_DE.pdf` / `_EN.pdf`
+- `spyfall_manager_edition_doublesided_DE.pdf` / `_EN.pdf`
+
+## Running Tests
 
 ```bash
 ruby test/test_card_data.rb
 ```
 
-Tests werden nach jeder Änderung an CSV oder Skripten ausgeführt.
+Tests are run after every change to CSV files or scripts.
 
-## Datenstruktur
+## Data Structure
 
-Alle Karteninhalte stehen in `card_data_front_sides.csv` (Semikolon-getrennt, UTF-8 mit BOM):
+Card content is split across two CSV files:
 
-| Spalte | Bedeutung |
+**`card_data_front_sides.csv`** (semicolon-separated, UTF-8 with BOM):
+
+| Column | Description |
 |---|---|
-| `ScenarioNumber` | Szenario-ID (1, 2, 3, …) |
-| `ScenarioNameDE` | Szenario-Name (Deutsch) — aktuell in Verwendung |
-| `RoleNumber` | Rollen-Nummer innerhalb des Szenarios |
-| `RoleNameDE` | Rollen-Name (Deutsch) — aktuell in Verwendung |
-| `ScenarioNameEN` / `RoleNameEN` | Englische Version (für spätere EN-Edition) |
-| `ScenarioImage` | Dateiname des Hintergrundbilds (liegt in `images/`) |
+| `ScenarioNumber` | Scenario ID (1, 2, 3, ...) |
+| `ScenarioNameDE` | Scenario name (German) |
+| `RoleNumber` | Role number within the scenario |
+| `RoleNameDE` | Role name (German) |
+| `ScenarioNameEN` / `RoleNameEN` | English version |
+| `ScenarioImage` | Background image filename (located in `images/`) |
 
-**Manager-Karten:** ScenarioNumber `99`, `RoleNameDE` leer. Die Anzahl der Manager-Karten (Zeilen mit 99) entspricht der Anzahl der regulären Szenarien, damit jedes Spiel genau einen Manager hat. Hintergrundbild: `background_managerDE.png`.
+**`card_data_back_sides.csv`** (semicolon-separated, UTF-8 without BOM):
 
-**Neues Szenario hinzufügen:**
-1. Rollen-Zeilen in der CSV ergänzen (neue ScenarioNumber)
-2. Eine weitere Zeile mit ScenarioNumber 99 ergänzen
-3. Hintergrundbild in `images/` ablegen
+| Column | Description |
+|---|---|
+| `Language` | Language code (`DE` or `EN`) |
+| `BacksideText` | Back side text (not printed on card currently, serves as reference) |
+| `BacksideImage` | Back side image filename (located in `images/`) |
 
-## Karten-Layout
+**Manager cards:** ScenarioNumber `99`, `RoleNameDE`/`RoleNameEN` empty. The number of Manager cards (rows with 99) matches the number of regular scenarios so each game has exactly one Manager. Background image: `background_managerDE.png`.
 
-Standard-Pokerkarte im **Landscape-Format**: 88,9 × 63,5 mm → 1050 × 750 px bei 300 dpi.
+**Adding a new scenario:**
+1. Add role rows to the CSV (new ScenarioNumber)
+2. Add one more row with ScenarioNumber 99
+3. Place a background image in `images/`
 
-**Vorderseite:**
-- Hintergrundbild füllt die gesamte Karte
-- Oben links: kleine Sepia-Box mit Szenario-Nummer
-- Oben daneben: große Sepia-Box mit Szenario-Name (fett, Courier New)
-- Unten links: Sepia-Box mit Rollen-Name (Courier New, kein Rahmen)
-- Schriftfarbe schwarz auf Sepia-Ton (`#c8a882`) für gute Lesbarkeit
+## Card Layout
 
-**Rückseite:** Alle Karten identisch — `images/backsideDE.png`
+Standard poker card in **landscape format**: 88.9 x 63.5 mm -> 1050 x 750 px at 300 dpi.
 
-**Ausgabe:** PDFs auf DIN A4 (`210mm × 297mm`), Squib arrangiert die Karten automatisch mit Rand, Gap und Beschnitt.
+**Front side:**
+- Background image fills the entire card
+- Top left: small sepia box with scenario number
+- Top next to it: large sepia box with scenario name (bold, Courier New)
+- Bottom left: sepia box with role name (Courier New, no border)
+- Black text on sepia tone (`#c8a882`) for good readability
 
-## Datei-Übersicht
+**Back side:** All cards identical — image from `card_data_back_sides.csv` for the respective language (`backsideDE.png` / `backsideEN.png`). Saved with `rtl: true` for duplex alignment.
+
+**Output:** PDFs on DIN A4 (`210mm x 297mm`), Squib automatically arranges cards with margin, gap, and trim.
+
+## File Overview
 
 ```
-start_card_generation.bat  # Einziger Einstiegspunkt für Kartengenerierung (Windows)
-card_generator.rb          # Ruby/Squib-Skript: erzeugt Vorder- und Rückseiten-PDF
-layout.yml                 # Squib-Layout-Definitionen: alle Positionen, Größen, Farben, Fonts
-card_data_front_sides.csv  # Kerndaten für alle Karten
-test/test_card_data.rb     # Minitest-Suite (7 Tests)
-images/                    # Alle Bilder (Hintergründe, Rückseite, Sketches)
-output/                    # Generierte PDFs (nicht committen)
+start_card_generation.bat  # Entry point for card generation (Windows)
+card_generator.rb          # Ruby/Squib script: generates front and back side PDFs
+layout.yml                 # Squib layout definitions: positions, sizes, colors, fonts
+card_data_front_sides.csv  # Front side data: scenarios and roles (DE + EN)
+card_data_back_sides.csv   # Back side data: image and text per language (DE + EN)
+test/test_card_data.rb     # Minitest suite (11 tests)
+images/                    # All images (backgrounds, back sides, sketches, photos)
+output/                    # Generated PDFs (do not commit)
 ```
 
-## Layout-System
+## Layout System
 
-Alle statischen Designwerte (Positionen, Größen, Farben, Fonts) stehen in `layout.yml` als benannte Squib-Layouts:
+All static design values (positions, sizes, colors, fonts) are stored in `layout.yml` as named Squib layouts:
 
-| Layout-Name | Beschreibung |
+| Layout name | Description |
 |---|---|
-| `card_background` | Hintergrundbild, füllt die ganze Karte |
-| `scenario_number_box` | Kleine Sepia-Box oben links (Szenario-Nummer) |
-| `scenario_name_box` | Große Sepia-Box oben daneben (Szenario-Name) |
-| `scenario_number_text` | Text in der Nummern-Box |
-| `scenario_name_text` | Text in der Name-Box |
-| `role_name_text` | Text in der Rollen-Box unten |
+| `card_background` | Background image, fills the entire card |
+| `scenario_number_box` | Small sepia box top left (scenario number) |
+| `scenario_name_box` | Large sepia box next to it (scenario name) |
+| `scenario_number_text` | Text in the number box |
+| `scenario_name_text` | Text in the name box |
+| `role_name_text` | Text in the role box at the bottom |
 
-Die Rollen-Box selbst hat keine feste Layout-Definition, da ihre Position, Größe und Farbe kartenabhängig berechnet werden (dynamisch aus den CSV-Daten). Nur die festen Werte (`stroke_color`, `stroke_width`, `radius`) sind im Skript direkt gesetzt.
+The role box itself has no fixed layout definition because its position, size, and color are computed dynamically per card from the CSV data. Only the fixed values (`stroke_color`, `stroke_width`, `radius`) are set directly in the script.
 
-Squib lädt das Layout mit `Squib::Deck.new(layout: 'layout.yml')`. Einzelne Befehle referenzieren ein Layout mit `layout: :name`. Per-Karte-Werte im Ruby-Code überschreiben dabei die YAML-Defaults.
+Squib loads the layout with `Squib::Deck.new(layout: 'layout.yml')`. Individual commands reference a layout with `layout: :name`. Per-card values in the Ruby code override the YAML defaults.
 
-## Wichtige Konventionen
+## Conventions
 
-- Neue Szenarien als neue Zeilen in der CSV ergänzen — das Skript liest alle automatisch ein
-- Manager-Karten haben ScenarioNumber 99 und leeres RoleNameDE
-- Englische Spalten in der CSV werden befüllt, aber im Skript noch nicht verwendet
-- Doppelseitiges PDF wird via PDFtk `shuffle` erzeugt, nicht direkt in Squib
-- CSV muss UTF-8 mit BOM gespeichert werden (Excel-Standard für Windows)
+- Add new scenarios as new rows in the CSV — the script reads all rows automatically
+- Manager cards have ScenarioNumber 99 and empty RoleName columns (DE + EN)
+- Back side image and text are stored in `card_data_back_sides.csv`, not hardcoded
+- Double-sided PDF is created via PDFtk `shuffle`, not directly in Squib
+- Back sides are saved with `rtl: true` so card positions are mirrored -- required for duplex alignment
+- `card_data_front_sides.csv` must be saved as UTF-8 with BOM (Windows Excel standard)
+- `card_data_back_sides.csv` is saved as UTF-8 without BOM (not edited in Excel)
+- To add a new language: add a row to `card_data_back_sides.csv`, place a back side image in `images/`, and add the corresponding columns to `card_data_front_sides.csv`
+- All text files in the repository use LF line endings (enforced via `.gitattributes`); `.bat` files use CRLF

@@ -1,109 +1,170 @@
 # Spyfall: Manager Edition
+### *"Ich bin ein Manager -- holt mich hier raus!"* / *"I am a Manager -- get me out of here!"*
 
-Ein Kartenspiel für Firmen-Settings, inspiriert vom Original **Spyfall**.
+A card game for corporate settings, inspired by the original **Spyfall**.
 
-Statt eines Spions gibt es hier einen **Manager**, der in einem Meeting landet — ohne zu wissen, worum es geht. Er muss vortäuschen, perfekt im Bild zu sein, während die anderen Teilnehmenden versuchen herauszufinden, wer der Manager ist.
+Instead of a spy, there is a **Manager** who ends up in a meeting without knowing what it is about -- and has to pretend otherwise. The other players know the scenario but not who the Manager is. Through questions and answers, everyone tries to expose the Manager while the Manager tries not to get caught.
 
-Das Spiel wurde gemeinschaftlich von einer Gruppe während des **Agile Coach Camp Germany im Juni 2026 in Röckersbach** entwickelt und playtestet.
+The game was collaboratively created and playtested by a group at the **Agile Coach Camp Germany, June 2026, Rückersbach**.
 
----
-
-## Spielprinzip
-
-- Alle Spieler bekommen eine Karte mit einem Meeting-Szenario und ihrer Rolle darin
-- **Ein Spieler** bekommt die Manager-Karte — er weiß nur, dass er der Manager ist, aber nicht, in welchem Meeting er sitzt
-- Die anderen Spieler kennen das Szenario, aber nicht, wer der Manager ist
-- Durch Fragen und Antworten versuchen alle, den Manager zu entlarven — und der Manager versucht, nicht aufzufliegen
-
----
-
-## Szenarien (aktuelle Version)
-
-| Nr. | Szenario |
+| | |
 |---|---|
-| 1 | Daily Standup Meeting |
-| 2 | Kündigungsgespräch |
-| 3 | Firmenweihnachtsfeier |
+| ![Cards](images/photo_printout_cards.jpg) | ![Pages](images/photo_printout_pages.jpg) |
 
 ---
 
-## Karten selbst drucken
+## Download
 
-### Voraussetzungen
+Ready-to-print PDFs (duplex, DIN A4):
 
-Die Kartengenerierung läuft aktuell **nur unter Windows**, da die Batch-Datei Windows-spezifisch ist.
+- [spyfall_manager_edition_doublesided_DE.pdf](output/spyfall_manager_edition_doublesided_DE.pdf) -- German version
+- [spyfall_manager_edition_doublesided_EN.pdf](output/spyfall_manager_edition_doublesided_EN.pdf) -- English version
 
-#### 1. Ruby installieren
+Print settings: **duplex, flip on long edge**. Odd pages = front sides, even pages = back sides.
 
-Ruby wird für die Kartengenerierung benötigt.
+---
 
-- Download: https://rubyinstaller.org/ (empfohlen: Ruby+Devkit, aktuelle Version)
-- Bei der Installation "Add Ruby executables to your PATH" aktivieren
-- Installation prüfen: `ruby --version` in der Kommandozeile
+## Scenarios
 
-Danach das Squib-Gem installieren:
+| # | German | English |
+|---|---|---|
+| 1 | Daily Standup Meeting | Daily Scrum Meeting |
+| 2 | Kundigungsgesprach | Layoff Meeting |
+| 3 | Firmenweihnachtsfeier | Corporate Christmas Party |
+| 4 | Aufsichtsratssitzung | Board Meeting |
+| 5 | Kantinen-Mittagspause | Lunch Break |
+| 6 | ISO-Audit | ISO Audit |
+| 7 | Brandschutzubung | Fire Drill |
+
+---
+
+## How to Play
+
+- All players receive a card showing a meeting scenario and their role in it
+- **One player** receives the Manager card -- they only know they are the Manager, not which meeting they are in
+- All other players know the scenario but not who the Manager is
+- Through questions and answers, players try to expose the Manager -- and the Manager tries to blend in
+
+---
+
+## Print Your Own Cards
+
+### Prerequisites
+
+Card generation currently runs **on Windows only**, as the batch file is Windows-specific.
+
+#### 1. Install Ruby
+
+Ruby is required for card generation.
+
+- Download: https://rubyinstaller.org/ (recommended: Ruby+Devkit, current version)
+- During installation, enable "Add Ruby executables to your PATH"
+- Verify installation: `ruby --version` in the command line
+
+Then install the Squib gem:
 
 ```
 gem install squib
 ```
 
-#### 2. PDFtk installieren
+#### 2. Install PDFtk
 
-PDFtk wird benötigt, um das doppelseitige PDF zu erzeugen.
+PDFtk is required to create the double-sided PDF.
 
 - Download: https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
-- Standard-Installationspfad: `C:\Program Files (x86)\PDFtk\bin\pdftk.exe`
-- Falls PDFtk an einem anderen Ort installiert wird, den Pfad in `start_card_generation.bat` anpassen
+- Default installation path: `C:\Program Files (x86)\PDFtk\bin\pdftk.exe`
+- If PDFtk is installed elsewhere, update the path in `start_card_generation.bat`
 
-### Karten generieren
+### Generate Cards
 
-Im Projektordner die Datei `start_card_generation.bat` doppelklicken oder in der Kommandozeile ausführen:
+Run `start_card_generation.bat` from the project folder by double-clicking it or via the command line:
 
 ```
-start_card_generation.bat
+start_card_generation.bat [DE|EN|both]
 ```
 
-Die generierten PDFs landen im Ordner `output/`:
+The language parameter is optional. Default is `both` (generates DE and EN versions).
 
-| Datei | Inhalt |
+Generated PDFs are placed in the `output/` folder:
+
+| File | Contents |
 |---|---|
-| `spyfall_manager_edition_frontsides.pdf` | Alle Vorderseiten auf DIN A4 |
-| `spyfall_manager_edition_backsides.pdf` | Alle Rückseiten auf DIN A4 |
-| `spyfall_manager_edition_doublesided.pdf` | Doppelseitig: Vorderseite + Rückseite alternierend |
+| `spyfall_manager_edition_frontsides_DE.pdf` / `_EN.pdf` | All front sides on DIN A4 |
+| `spyfall_manager_edition_backsides_DE.pdf` / `_EN.pdf` | All back sides on DIN A4 |
+| `spyfall_manager_edition_doublesided_DE.pdf` / `_EN.pdf` | Duplex: front and back alternating |
 
-### Drucken und Ausschneiden
+### Printing and Cutting
 
-Für doppelseitigen Druck das `_doublesided.pdf` verwenden: ungerade Seiten sind Vorderseiten, gerade Seiten die dazugehörigen Rückseiten. Im Drucker "doppelseitig, an der langen Kante" wählen.
+For duplex printing, use the `_doublesided` PDF: odd pages are front sides, even pages are the corresponding back sides. In your printer settings, select "duplex, flip on long edge".
 
----
-
-## Neue Szenarien hinzufügen
-
-1. `card_data_front_sides.csv` öffnen (UTF-8 mit BOM, Semikolon-getrennt)
-2. Neue Zeilen für jede Rolle des Szenarios ergänzen (neue `ScenarioNumber`)
-3. Eine weitere Zeile mit `ScenarioNumber` = `99` und leerem `RoleNameDE` hinzufügen (Manager-Karte)
-4. Ein passendes Hintergrundbild in `images/` ablegen und in `ScenarioImage` eintragen
-5. `start_card_generation.bat` ausführen
-
-Das Skript liest alle CSV-Zeilen automatisch ein — keine Code-Änderung nötig.
+The back side PDF is generated with a mirrored card layout (`rtl: true` in Squib) so that front and back sides align correctly after flipping.
 
 ---
 
-## Projektstruktur
+## Adding New Scenarios
+
+1. Open `card_data_front_sides.csv` (UTF-8 with BOM, semicolon-separated)
+2. Add new rows for each role in the scenario (new `ScenarioNumber`)
+3. Add one more row with `ScenarioNumber` = `99` and empty `RoleNameDE`/`RoleNameEN` (Manager card)
+4. Place a matching background image in `images/` and reference it in `ScenarioImage`
+5. Run `start_card_generation.bat`
+
+The script reads all CSV rows automatically -- no code changes required.
+
+---
+
+## Project Structure
 
 ```
-start_card_generation.bat  # Einziger Einstiegspunkt für Kartengenerierung
-card_generator.rb          # Ruby/Squib-Skript
-card_data_front_sides.csv  # Spielinhalte (Szenarien, Rollen, Bilder)
-images/                    # Hintergrundbilder und Kartenrückseite
-output/                    # Generierte PDFs (nicht im Repository)
-test/                      # Automatisierte Tests
+start_card_generation.bat  # Entry point for card generation (Windows)
+card_generator.rb          # Ruby/Squib script
+card_data_front_sides.csv  # Card content: scenarios and roles (DE + EN)
+card_data_back_sides.csv   # Back side content: image and text per language
+layout.yml                 # Squib layout definitions: positions, sizes, colors, fonts
+images/                    # Background images and card backs
+output/                    # Generated PDFs (not tracked in repository)
+test/                      # Automated tests
 ```
 
 ---
 
-## Entwicklung
+## Development
 
-Das Spiel ist Open Source. Neue Szenarien, Übersetzungen und Verbesserungen sind willkommen.
+Contributions are welcome -- new scenarios, translations, and improvements. Both DE and EN columns are active in the CSV and both language versions are generated by default.
 
-Für eine englische Version sind die Spalten `ScenarioNameEN` und `RoleNameEN` in der CSV bereits vorbereitet, aber noch nicht aktiv genutzt.
+---
+
+## Credits
+
+**Spyfall: Manager Edition** was created by:
+
+Irina Tolliszus, Hannah Schlamann, Martin Halfen, Martin Luig, Patrick Lehrbach, Frank Link, Udo Wiegartner
+
+Created at the **Agile Coach Camp Germany, June 2026, Rückersbach**.
+
+---
+
+## Legal Notice
+
+**Spyfall: Manager Edition** is an unofficial community variant and is not affiliated with or endorsed by the publisher of the original **Spyfall** game. All rights to the original game remain with their respective owners.
+
+This variant is an independent fan work and makes no claim to the trademark or intellectual property of the original game.
+
+---
+
+## License
+
+[![CC BY-NC-SA 4.0](https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+
+**Spyfall: Manager Edition** (c) 2026 Irina Tolliszus, Hannah Schlamann, Martin Halfen, Martin Luig, Patrick Lehrbach, Frank Link, Udo Wiegartner
+
+Licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+You are free to:
+- **Share** -- copy and redistribute the material in any medium or format
+- **Adapt** -- remix, transform, and build upon the material
+
+Under the following terms:
+- **Attribution (BY)** -- You must give appropriate credit and name the authors listed above as the source
+- **NonCommercial (NC)** -- You may not use the material for commercial purposes
+- **ShareAlike (SA)** -- If you remix or adapt the material, you must distribute your contribution under the same license
