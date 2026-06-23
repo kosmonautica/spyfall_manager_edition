@@ -1,11 +1,12 @@
 # Spyfall: Manager Edition or "I am a Manager - get me out of here!"
 
-A card game for corporate settings, inspired by the original **Spyfall**. We call this version "I am a Manager - get me out of here!".
+A card game for corporate settings, inspired by the original Spyfall. We call this version "I am a Manager - get me out of here!".
 
-Instead of a spy, there is a **Manager** who ends up in a meeting without knowing what it is about - and has to pretend otherwise. The other players know the scenario but not who the Manager is. Through questions and answers, everyone tries to expose the Manager while the Manager tries to find out what this gathering is all about without being caught.
+This game is not about manager bashing. It is actually the opposite. It is a tribute to a very real challenge: managers are often pulled into meetings simply because management attention is needed — without being told what the meeting is actually about. Once there, they face a near-impossible task: be useful, ask the right questions, and contribute meaningfully — all while not giving away that they have no idea what is going on.
+
+In this game, one player takes on exactly that role. The Manager ends up in a meeting without knowing which one it is — and has to pretend otherwise. The other players know the scenario but not who the Manager is. Through questions and answers, everyone tries to expose the Manager while the Manager tries to blend in.
 
 The game was collaboratively created and playtested at the **Agile Coach Camp Germany, June 2026, Rückersbach** by Irina Tolliszus, Hannah Schlamann, Martin Halfen, Martin Luig, Patrick Lehrbach, Frank Link and Udo Wiegärtner.
-.
 
 | | |
 |---|---|
@@ -36,12 +37,12 @@ Print settings: **duplex, flip on long edge**. Odd pages = front sides, even pag
 | # | German | English |
 |---|---|---|
 | 1 | Daily Standup Meeting | Daily Scrum Meeting |
-| 2 | Kundigungsgesprach | Layoff Meeting |
+| 2 | Kündigungsgesprach | Layoff Meeting |
 | 3 | Firmenweihnachtsfeier | Corporate Christmas Party |
 | 4 | Aufsichtsratssitzung | Board Meeting |
 | 5 | Kantinen-Mittagspause | Lunch Break |
 | 6 | ISO-Audit | ISO Audit |
-| 7 | Brandschutzubung | Fire Drill |
+| 7 | Brandschutzübung | Fire Drill |
 
 ---
 
@@ -56,7 +57,7 @@ Print settings: **duplex, flip on long edge**. Odd pages = front sides, even pag
 
 ## Generate Your Own Cards
 
-You can download and print the pre-generated cards. In. case you want to modify or generate your own cards, here are the steps to do so.
+You can download and print the pre-generated cards. In case you want to modify or generate your own cards, here are the steps to do so.
 
 ### Prerequisites
 
