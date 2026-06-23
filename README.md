@@ -6,7 +6,7 @@ This game is not about manager bashing. It is actually the opposite. It is a tri
 
 In this game, one player takes on exactly that role. The Manager ends up in a meeting without knowing which one it is — and has to pretend otherwise. The other players know the scenario but not who the Manager is. Through questions and answers, everyone tries to expose the Manager while the Manager tries to blend in.
 
-The game was collaboratively created and playtested at the **Agile Coach Camp Germany, June 2026, Rückersbach** by Irina Tolliszus, Hannah Schlamann, Martin Halfen, Martin Luig, Patrick Lehrbach, Frank Link and Udo Wiegärtner.
+The game was collaboratively created and playtested at the **Agile Coach Camp Germany, June 2026, Rückersbach** by Irina Tolliszus, Hannah Schlamann, Martin Halfen, Martin Luig, Patrick Lehrbach, Frank Link, Tobias Wilmeroth and Udo Wiegärtner.
 
 | | |
 |---|---|
@@ -159,7 +159,7 @@ This variant is an independent fan work and makes no claim to the trademark or i
 [![CC BY-NC-SA 4.0](https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 **I am a Manager - get me out of here! / Ich bin ein Manager - holt mich hier raus!**
-Created 2026 by Irina Tolliszus, Hannah Schlamann, Martin Halfen, Martin Luig, Patrick Lehrbach, Frank Link, Udo Wiegärtner
+Created 2026 by Irina Tolliszus, Hannah Schlamann, Martin Halfen, Martin Luig, Patrick Lehrbach, Frank Link, Tobias Wilmeroth, Udo Wiegärtner
 
 Licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
