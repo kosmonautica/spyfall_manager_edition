@@ -60,15 +60,21 @@ class TestCardData < Minitest::Test
 
   def test_rueckseiten_csv_hat_de_und_en
     sprachen = @back.map { |row| row['Language'] }
-    assert_includes sprachen, 'DE', "card_data_back_sides.csv: Eintrag für DE fehlt"
-    assert_includes sprachen, 'EN', "card_data_back_sides.csv: Eintrag für EN fehlt"
+    assert_includes sprachen, 'DE', "card_data_back_sides_and_misc.csv: Eintrag für DE fehlt"
+    assert_includes sprachen, 'EN', "card_data_back_sides_and_misc.csv: Eintrag für EN fehlt"
   end
 
   def test_rueckseiten_pflichtfelder_vorhanden
     @back.each_with_index do |row, i|
       zeile = "Zeile #{i + 2} (back_sides)"
-      assert row['Language']     && !row['Language'].empty?,     "#{zeile}: Language fehlt"
-      assert row['BacksideText'] && !row['BacksideText'].empty?, "#{zeile}: BacksideText fehlt"
+      assert row['Language'] && !row['Language'].empty?, "#{zeile}: Language fehlt"
+    end
+  end
+
+  def test_game_name_vorhanden_und_nicht_leer
+    @back.each_with_index do |row, i|
+      zeile = "Zeile #{i + 2} (back_sides)"
+      assert row['GameName'] && !row['GameName'].strip.empty?, "#{zeile}: GameName fehlt oder ist leer"
     end
   end
 
@@ -81,6 +87,17 @@ class TestCardData < Minitest::Test
     refute_match(/error/i, output, "card_generator.rb gab Fehler aus:\n#{output}")
   end
 
+  def test_output_dateinamen_stimmen_mit_game_name_ueberein
+    `#{RbConfig.ruby} card_generator.rb DE 2>&1`
+    return unless $?.success?
+    prefix = @back.find { |r| r['Language'] == 'DE' }&.[]('GameName')&.gsub(' ', '_')
+    skip "GameName für DE nicht gesetzt" unless prefix
+    assert File.exist?("output/#{prefix}_frontsides_DE.pdf"),
+           "Frontsides-PDF nicht gefunden -- GameName '#{prefix}' stimmt nicht mit Dateiname überein"
+    assert File.exist?("output/#{prefix}_backsides_DE.pdf"),
+           "Backsides-PDF nicht gefunden -- GameName '#{prefix}' stimmt nicht mit Dateiname überein"
+  end
+
   PDFTK = 'C:\Program Files (x86)\PDFtk\bin\pdftk.exe'.freeze
 
   def pdf_page_count(path)
@@ -91,8 +108,10 @@ class TestCardData < Minitest::Test
 
   def test_vorder_und_rueckseiten_pdf_gleich_viele_seiten
     ['DE', 'EN'].each do |lang|
-      front = "output/spyfall_manager_edition_frontsides_#{lang}.pdf"
-      back  = "output/spyfall_manager_edition_backsides_#{lang}.pdf"
+      prefix = @back.find { |r| r['Language'] == lang }&.[]('GameName')&.gsub(' ', '_')
+      skip "GameName für #{lang} nicht gesetzt -- PDF-Test übersprungen" unless prefix
+      front = "output/#{prefix}_frontsides_#{lang}.pdf"
+      back  = "output/#{prefix}_backsides_#{lang}.pdf"
       skip "PDFs für #{lang} noch nicht generiert" unless File.exist?(front) && File.exist?(back)
       pages_front = pdf_page_count(front)
       pages_back  = pdf_page_count(back)

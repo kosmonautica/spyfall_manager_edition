@@ -27,7 +27,8 @@
       "Bash(python3 -c \"from PIL import Image; print\\('PIL ok'\\)\")",
       "Bash(pip install *)",
       "Bash(pip3 install *)",
-      "Bash(sudo apt-get install -y imagemagick)"
+      "Bash(sudo apt-get install -y imagemagick)",
+      "Bash(git checkout *)"
     ]
   }
 }

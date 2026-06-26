@@ -72,7 +72,7 @@ front_data = CSV.read('card_data_front_sides.csv', headers: true, col_sep: ';',
 
 misc_data = CSV.read('card_data_back_sides_and_misc.csv', headers: true, col_sep: ';',
                      encoding: 'utf-8').each_with_object({}) do |row, h|
-  h[row['Language']] = { overview_title: row['OverviewTitle'] }
+  h[row['Language']] = { overview_title: row['OverviewTitle'], game_name: row['GameName'] }
 end
 
 LANGUAGES.each do |lang|
@@ -80,6 +80,7 @@ LANGUAGES.each do |lang|
   misc     = misc_data[lang]
   abort "ERROR: No misc data for language '#{lang}' in card_data_back_sides_and_misc.csv" unless misc
   abort "ERROR: OverviewTitle missing for language '#{lang}'" if misc[:overview_title].nil? || misc[:overview_title].strip.empty?
+  abort "ERROR: GameName missing for language '#{lang}'" if misc[:game_name].nil? || misc[:game_name].strip.empty?
 
   scenarios = front_data
     .reject  { |r| r['ScenarioNumber'] == '99' }
@@ -87,7 +88,8 @@ LANGUAGES.each do |lang|
     .values
     .map(&:first)
 
-  out_file = "spyfall_manager_edition_scenarios_#{lang}.pdf"
+  game_prefix = misc[:game_name].gsub(' ', '_')
+  out_file    = "#{game_prefix}_scenarios_#{lang}.pdf"
   out_path = "output/#{out_file}"
   begin
     File.delete(out_path) if File.exist?(out_path)

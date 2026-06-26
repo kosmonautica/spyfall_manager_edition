@@ -27,7 +27,10 @@ front_data = CSV.read('card_data_front_sides.csv', headers: true, col_sep: ';',
 
 back_data = CSV.read('card_data_back_sides_and_misc.csv', headers: true, col_sep: ';',
                      encoding: 'utf-8').each_with_object({}) do |row, h|
-  h[row['Language']] = { text: row['BacksideText'], image: "images/#{row['BacksideImage']}" }
+  h[row['Language']] = {
+    image:     "images/#{row['BacksideImage']}",
+    game_name: row['GameName']
+  }
 end
 
 def build_front_cards(data, name_col, role_col)
@@ -52,11 +55,12 @@ LANGUAGES.each do |lang|
   name_col = "ScenarioName#{lang}"
   role_col = "RoleName#{lang}"
   back     = back_data[lang]
-  abort "ERROR: No backside data for language '#{lang}' in card_data_back_sides.csv" unless back
-  abort "ERROR: Backside text missing for language '#{lang}'" if back[:text].nil? || back[:text].strip.empty?
+  abort "ERROR: No backside data for language '#{lang}' in card_data_back_sides_and_misc.csv" unless back
+  abort "ERROR: GameName missing for language '#{lang}'" if back[:game_name].nil? || back[:game_name].strip.empty?
 
-  front_file = "spyfall_manager_edition_frontsides_#{lang}.pdf"
-  back_file  = "spyfall_manager_edition_backsides_#{lang}.pdf"
+  game_prefix = back[:game_name].gsub(' ', '_')
+  front_file  = "#{game_prefix}_frontsides_#{lang}.pdf"
+  back_file   = "#{game_prefix}_backsides_#{lang}.pdf"
 
   [front_file, back_file].each do |f|
     path = "output/#{f}"
@@ -102,7 +106,7 @@ LANGUAGES.each do |lang|
   # align correctly when printing duplex (flip on long edge)
   Squib::Deck.new(cards: n, width: CARD_WIDTH, height: CARD_HEIGHT, layout: 'layout.yml') do
     background color: 'white'
-    text layout: :backside_text, str: back[:text]
+    text layout: :backside_text, str: back[:game_name]
     save_pdf file: back_file, dir: 'output', rtl: true, **PDF_OPTS
   end
 
