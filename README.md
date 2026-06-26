@@ -30,7 +30,7 @@ Ready-to-print PDFs (duplex, DIN A4):
 
 Print settings: **duplex, flip on long edge**. Odd pages = front sides, even pages = back sides.
 
-Scenario overview sheet (DIN A4, single-sided):
+Scenario overview sheet (DIN A4, single-sided) — place this on the table during the game so all players can see which scenarios are in play at a glance:
 
 - [spyfall_manager_edition_scenarios_DE.pdf](output/spyfall_manager_edition_scenarios_DE.pdf) - German version
 - [spyfall_manager_edition_scenarios_EN.pdf](output/spyfall_manager_edition_scenarios_EN.pdf) - English version
@@ -84,7 +84,7 @@ gem install squib
 
 #### 2. Install PDFtk
 
-PDFtk is required to create the double-sided PDF.
+PDFtk is required to create the double-sided PDF and for the page-count tests.
 
 - Download: https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
 - Default installation path: `C:\Program Files (x86)\PDFtk\bin\pdftk.exe`
