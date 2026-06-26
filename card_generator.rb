@@ -25,7 +25,7 @@ LANGUAGES = case lang_arg
 front_data = CSV.read('card_data_front_sides.csv', headers: true, col_sep: ';',
                       encoding: 'bom|utf-8').reject { |row| row['ScenarioNumber'].nil? }
 
-back_data = CSV.read('card_data_back_sides.csv', headers: true, col_sep: ';',
+back_data = CSV.read('card_data_back_sides_and_misc.csv', headers: true, col_sep: ';',
                      encoding: 'utf-8').each_with_object({}) do |row, h|
   h[row['Language']] = { text: row['BacksideText'], image: "images/#{row['BacksideImage']}" }
 end
@@ -106,5 +106,5 @@ LANGUAGES.each do |lang|
     save_pdf file: back_file, dir: 'output', rtl: true, **PDF_OPTS
   end
 
-  puts "#{lang}: #{n} cards -> output/#{front_file} + output/#{back_file}"
+  puts "#{lang}: #{n} cards written -> output/#{front_file} (fronts) + output/#{back_file} (backs)"
 end

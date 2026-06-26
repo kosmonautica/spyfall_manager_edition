@@ -7,7 +7,7 @@ class TestCardData < Minitest::Test
                       encoding: 'bom|utf-8')
                 .reject { |row| row['ScenarioNumber'].nil? }
 
-    @back = CSV.read('card_data_back_sides.csv', headers: true, col_sep: ';',
+    @back = CSV.read('card_data_back_sides_and_misc.csv', headers: true, col_sep: ';',
                      encoding: 'utf-8')
                .reject { |row| row['Language'].nil? }
   end
@@ -81,14 +81,21 @@ class TestCardData < Minitest::Test
     refute_match(/error/i, output, "card_generator.rb gab Fehler aus:\n#{output}")
   end
 
+  PDFTK = 'C:\Program Files (x86)\PDFtk\bin\pdftk.exe'.freeze
+
+  def pdf_page_count(path)
+    skip "PDFtk nicht gefunden -- Seitenanzahl-Test übersprungen" unless File.exist?(PDFTK)
+    output = `"#{PDFTK}" "#{path}" dump_data 2>&1`
+    output.match(/NumberOfPages:\s*(\d+)/i)&.[](1)&.to_i
+  end
+
   def test_vorder_und_rueckseiten_pdf_gleich_viele_seiten
     ['DE', 'EN'].each do |lang|
       front = "output/spyfall_manager_edition_frontsides_#{lang}.pdf"
       back  = "output/spyfall_manager_edition_backsides_#{lang}.pdf"
       skip "PDFs für #{lang} noch nicht generiert" unless File.exist?(front) && File.exist?(back)
-      count_pages = ->(path) { File.read(path, encoding: 'binary').scan(%r{/Type\s*/Page[^s]}).size }
-      pages_front = count_pages.call(front)
-      pages_back  = count_pages.call(back)
+      pages_front = pdf_page_count(front)
+      pages_back  = pdf_page_count(back)
       assert_equal pages_front, pages_back,
                    "#{lang}: Frontsides hat #{pages_front} Seiten, Backsides hat #{pages_back} -- Duplex-Druck wäre versetzt!"
     end

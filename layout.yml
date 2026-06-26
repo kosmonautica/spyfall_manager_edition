@@ -55,6 +55,18 @@ role_name_text:
   align: 'left'
   valign: 'middle'
 
+# --- Scenario overview sheet ---
+
+overview_title:
+  x: 0
+  y: 40
+  width: 2480
+  height: 140
+  font: 'Courier New Bold 28'
+  color: 'black'
+  align: 'center'
+  valign: 'middle'
+
 # --- Back side ---
 
 backside_text:

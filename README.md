@@ -30,6 +30,11 @@ Ready-to-print PDFs (duplex, DIN A4):
 
 Print settings: **duplex, flip on long edge**. Odd pages = front sides, even pages = back sides.
 
+Scenario overview sheet (DIN A4, single-sided):
+
+- [spyfall_manager_edition_scenarios_DE.pdf](output/spyfall_manager_edition_scenarios_DE.pdf) - German version
+- [spyfall_manager_edition_scenarios_EN.pdf](output/spyfall_manager_edition_scenarios_EN.pdf) - English version
+
 ---
 
 ## Scenarios
@@ -102,6 +107,7 @@ Generated PDFs are placed in the `output/` folder:
 | `spyfall_manager_edition_frontsides_DE.pdf` / `_EN.pdf` | All front sides on DIN A4 |
 | `spyfall_manager_edition_backsides_DE.pdf` / `_EN.pdf` | All back sides on DIN A4 |
 | `spyfall_manager_edition_doublesided_DE.pdf` / `_EN.pdf` | Duplex: front and back alternating |
+| `spyfall_manager_edition_scenarios_DE.pdf` / `_EN.pdf` | Scenario overview sheet (DIN A4, single-sided) |
 
 ### Printing and Cutting
 
@@ -128,14 +134,15 @@ The script reads all CSV rows automatically -- no code changes required.
 ## Project Structure
 
 ```
-start_card_generation.bat  # Entry point for card generation (Windows)
-card_generator.rb          # Ruby/Squib script
-card_data_front_sides.csv  # Card content: scenarios and roles (DE + EN)
-card_data_back_sides.csv   # Back side content: image and text per language
-layout.yml                 # Squib layout definitions: positions, sizes, colors, fonts
-images/                    # Background images and card backs
-output/                    # Generated PDFs (not tracked in repository)
-test/                      # Automated tests
+start_card_generation.bat          # Entry point for card generation (Windows)
+card_generator.rb                  # Ruby/Squib script: front and back side PDFs
+scenario_overview.rb               # Ruby/Squib script: scenario overview sheet
+card_data_front_sides.csv          # Card content: scenarios and roles (DE + EN)
+card_data_back_sides_and_misc.csv  # Back side content + misc texts per language
+layout.yml                         # Squib layout definitions: positions, sizes, colors, fonts
+images/                            # Background images and card backs
+output/                            # Generated PDFs (not tracked in repository)
+test/                              # Automated tests
 ```
 
 ---
