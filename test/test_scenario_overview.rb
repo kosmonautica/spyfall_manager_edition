@@ -24,6 +24,14 @@ class TestScenarioOverview < Minitest::Test
     end
   end
 
+  def test_game_name_vorhanden_und_nicht_leer
+    @misc.each_with_index do |row, i|
+      zeile = "Zeile #{i + 2} (#{row['Language']})"
+      assert row['GameName'] && !row['GameName'].strip.empty?,
+             "#{zeile}: GameName fehlt oder ist leer"
+    end
+  end
+
   # --- Script ---
 
   def test_skript_laeuft_ohne_fehler_und_warnungen
@@ -31,6 +39,15 @@ class TestScenarioOverview < Minitest::Test
     assert $?.success?, "scenario_overview.rb endete mit Fehler:\n#{output}"
     refute_match(/WARN/i,  output, "scenario_overview.rb gab Warnungen aus:\n#{output}")
     refute_match(/error/i, output, "scenario_overview.rb gab Fehler aus:\n#{output}")
+  end
+
+  def test_output_dateiname_stimmt_mit_game_name_ueberein
+    `#{RbConfig.ruby} scenario_overview.rb DE 2>&1`
+    return unless $?.success?
+    prefix = @misc.find { |r| r['Language'] == 'DE' }&.[]('GameName')&.gsub(' ', '_')
+    skip "GameName für DE nicht gesetzt" unless prefix
+    assert File.exist?("output/#{prefix}_scenarios_DE.pdf"),
+           "Scenarios-PDF nicht gefunden -- GameName '#{prefix}' stimmt nicht mit Dateiname überein"
   end
 
   def test_dreispaltig_wenn_skalierung_noetig
@@ -62,7 +79,9 @@ class TestScenarioOverview < Minitest::Test
 
   def test_overview_pdf_hat_genau_eine_seite
     ['DE', 'EN'].each do |lang|
-      path = "output/spyfall_manager_edition_scenarios_#{lang}.pdf"
+      prefix = @misc.find { |r| r['Language'] == lang }&.[]('GameName')&.gsub(' ', '_')
+      skip "GameName für #{lang} nicht gesetzt -- PDF-Test übersprungen" unless prefix
+      path = "output/#{prefix}_scenarios_#{lang}.pdf"
       skip "PDF für #{lang} noch nicht generiert" unless File.exist?(path)
       actual_pages = pdf_page_count(path)
       assert_equal 1, actual_pages,

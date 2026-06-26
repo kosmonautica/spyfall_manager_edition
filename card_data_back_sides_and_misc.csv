@@ -1,3 +1,3 @@
-Language;BacksideText;BacksideImage;OverviewTitle
-DE;Ich bin ein Manager - holt mich hier raus!;backsideDE.png;Alle verfügbaren Szenarien
-EN;I am a Manager - get me out of here!;backsideEN.png;All available scenarios
+Language;BacksideImage;OverviewTitle;GameName
+DE;backsideDE.png;Alle verfügbaren Szenarien;Meeting Impossible
+EN;backsideEN.png;All available scenarios;Meeting Impossible

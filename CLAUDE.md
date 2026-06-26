@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Spyfall: Manager Edition** — a card game based on the original Spyfall, set in a corporate environment. Instead of a spy, there is a Manager who ends up in a meeting without knowing what it is about and has to pretend otherwise.
+**Meeting Impossible** — a card game based on the original Spyfall, set in a corporate environment. Instead of a spy, there is a Manager who ends up in a meeting without knowing what it is about and has to pretend otherwise.
 
 Cards are generated using **Ruby and the Squib gem**. Both a **German (DE)** and an **English (EN)** version are built by default.
 
@@ -25,11 +25,11 @@ The script:
 
 **Duplex alignment:** Back side PDFs are generated with `rtl: true` in Squib, which mirrors the card layout horizontally. This ensures front and back sides align correctly when printing duplex (flip on long edge) on a portrait A4 sheet with landscape cards. No PDFtk rotation step is needed.
 
-Output in `output/` (per language):
-- `spyfall_manager_edition_frontsides_DE.pdf` / `_EN.pdf`
-- `spyfall_manager_edition_backsides_DE.pdf` / `_EN.pdf`
-- `spyfall_manager_edition_doublesided_DE.pdf` / `_EN.pdf`
-- `spyfall_manager_edition_scenarios_DE.pdf` / `_EN.pdf`
+Output in `output/` (per language) — prefix is `GameName` from the CSV with spaces replaced by underscores (currently `Meeting_Impossible`):
+- `Meeting_Impossible_frontsides_DE.pdf` / `_EN.pdf`
+- `Meeting_Impossible_backsides_DE.pdf` / `_EN.pdf`
+- `Meeting_Impossible_doublesided_DE.pdf` / `_EN.pdf`
+- `Meeting_Impossible_scenarios_DE.pdf` / `_EN.pdf`
 
 ## Running Tests
 
@@ -60,7 +60,7 @@ Card content is split across two CSV files:
 | Column | Description |
 |---|---|
 | `Language` | Language code (`DE` or `EN`) |
-| `BacksideText` | Back side text (not printed on card currently, serves as reference) |
+| `GameName` | Game name displayed on the back side of all cards; also used (spaces → underscores) as the prefix for all generated PDF filenames |
 | `BacksideImage` | Back side image filename (located in `images/`) |
 | `OverviewTitle` | Heading text for the scenario overview sheet |
 
@@ -129,6 +129,16 @@ The role box itself has no fixed layout definition because its position, size, a
 
 Squib loads the layout with `Squib::Deck.new(layout: 'layout.yml')`. Individual commands reference a layout with `layout: :name`. Per-card values in the Ruby code override the YAML defaults.
 
+## Renaming the Game
+
+The game name is configured per language in `card_data_back_sides_and_misc.csv` via the `GameName` column. Changing it there is the only step required — all scripts derive filenames and card back text from it automatically:
+
+1. Open `card_data_back_sides_and_misc.csv`
+2. Change `GameName` for DE and/or EN to the new name
+3. Run `start_card_generation.bat` — PDFs will be generated with the new name as prefix (spaces replaced by underscores)
+
+The game name is printed on the back side of every card and used as the prefix for all output PDF filenames. DE and EN can have different game names.
+
 ## Conventions
 
 - Add new scenarios as new rows in the CSV — the script reads all rows automatically
@@ -141,4 +151,7 @@ Squib loads the layout with `Squib::Deck.new(layout: 'layout.yml')`. Individual 
 - `card_data_back_sides_and_misc.csv` is saved as UTF-8 without BOM (not edited in Excel)
 - To add a new language: add a row to `card_data_back_sides_and_misc.csv`, place a back side image in `images/`, and add the corresponding columns to `card_data_front_sides.csv`
 - All text files in the repository use LF line endings (enforced via `.gitattributes`); `.bat` files use CRLF
-- **When adding any new script or feature:** always add tests, update CLAUDE.md, and update README.md in the same change
+- **Every change ships complete:** tests + CLAUDE.md + README.md are mandatory deliverables, not optional follow-ups. This applies to any change — new feature, new config option, renamed field, changed behaviour. Specifically:
+  - **Tests:** cover the new or changed behaviour, including edge cases like per-language differences
+  - **CLAUDE.md:** reflect the new data structure, convention, or developer-facing behaviour; if something is now configurable, document *how* and *where* to configure it
+  - **README.md:** reflect any user-facing changes — output filenames, new sections for new user actions (e.g. "Renaming the Game"), updated tables
