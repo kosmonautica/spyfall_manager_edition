@@ -84,8 +84,8 @@ LANGUAGES.each do |lang|
          y:      cards.map { |c| CARD_HEIGHT - 40 - c[:role_height] },
          width:  cards.map { |c| c[:role_width] },
          height: cards.map { |c| c[:role_height] },
-         fill_color:   cards.map { |c| c[:has_role] ? '#c8a882' : '#00000000' },
-         stroke_color: '#c8a882', stroke_width: 0, radius: 4
+         fill_color:   cards.map { |c| c[:has_role] ? '#f0e4d4' : '#00000000' },
+         stroke_color: '#f0e4d4', stroke_width: 0, radius: 4
 
     text layout: :scenario_number_text,
          str: cards.map { |c| c[:scenario_number] }

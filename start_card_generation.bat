@@ -1,4 +1,4 @@
-﻿@echo off
+@echo off
 rem Card generation: front sides, back sides and double-sided PDF in one step.
 rem PDFtk shuffles pages alternating (F1 B1 F2 B2 ...) for duplex printing.
 rem Back sides are saved with rtl:true in Squib so card positions are mirrored

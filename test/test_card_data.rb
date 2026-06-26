@@ -25,7 +25,7 @@ class TestCardData < Minitest::Test
       assert row['ScenarioNameDE'] && !row['ScenarioNameDE'].empty?, "#{zeile}: ScenarioNameDE fehlt"
       assert row['ScenarioNameEN'] && !row['ScenarioNameEN'].empty?, "#{zeile}: ScenarioNameEN fehlt"
       assert row['ScenarioImage']  && !row['ScenarioImage'].empty?,  "#{zeile}: ScenarioImage fehlt"
-      # RoleNameDE/EN darf leer sein (Manager-Karten haben keine Rolle)
+      # RoleNameDE/EN darf leer sein (Clueless-Person-Karten haben keine Rolle)
     end
   end
 
@@ -48,11 +48,11 @@ class TestCardData < Minitest::Test
     assert regulaere.size > 0, "Keine regulären Rollen-Karten gefunden"
   end
 
-  def test_manager_karten_haben_keine_rollenbox
+  def test_clueless_person_karten_haben_keine_rollenbox
     @front.select { |row| row['ScenarioNumber'] == '99' }.each_with_index do |row, i|
       role = row['RoleNameDE'] || ''
       assert role.empty?,
-             "Manager-Karte #{i + 1}: RoleNameDE sollte leer sein, ist aber '#{role}'"
+             "Clueless-Person-Karte #{i + 1}: RoleNameDE sollte leer sein, ist aber '#{role}'"
     end
   end
 

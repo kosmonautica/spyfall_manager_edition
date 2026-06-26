@@ -1,4 +1,4 @@
-# Squib layout definitions for Spyfall: Manager Edition
+# Squib layout definitions for Meeting Impossible
 # Poker card landscape: 88.9mm x 63.5mm -> 1050 x 750 px at 300 dpi
 
 card_background:
@@ -12,8 +12,8 @@ scenario_number_box:
   y: 40
   width: 60
   height: 60
-  fill_color: '#c8a882'
-  stroke_color: '#c8a882'
+  fill_color: '#f0e4d4'
+  stroke_color: '#f0e4d4'
   stroke_width: 0
   radius: 4
 
@@ -22,8 +22,8 @@ scenario_name_box:
   y: 40
   width: 900
   height: 60
-  fill_color: '#c8a882'
-  stroke_color: '#c8a882'
+  fill_color: '#f0e4d4'
+  stroke_color: '#f0e4d4'
   stroke_width: 0
   radius: 4
 

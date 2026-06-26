@@ -113,7 +113,7 @@ For duplex printing, use the `_doublesided` PDF: odd pages are front sides, even
 
 The back side PDF is generated with a mirrored card layout (`rtl: true` in Squib) so that front and back sides align correctly after flipping.
 
-> **Important after cutting:** The cards are printed scenario by scenario. After cutting, sort the cards into sets — one set per scenario. Each set must include exactly **one Manager card**. The Manager cards are printed at the end of the PDF and can be identified by their distinct background image (no role text). Add one Manager card to each scenario set before playing.
+> **Important after cutting:** The cards are printed scenario by scenario. After cutting, sort the cards into sets — one set per scenario. Each set must include exactly **one clueless person card**. The clueless person cards are printed at the end of the PDF and can be identified by their distinct background image (no role text). Add one clueless person card to each scenario set before playing.
 
 ---
 
@@ -131,11 +131,13 @@ The game name is configured in `card_data_back_sides_and_misc.csv` — one entry
 
 1. Open `card_data_front_sides.csv` (UTF-8 with BOM, semicolon-separated)
 2. Add new rows for each role in the scenario (new `ScenarioNumber`)
-3. Add one more row with `ScenarioNumber` = `99` and empty `RoleNameDE`/`RoleNameEN` (Manager card)
+3. Add one more row with `ScenarioNumber` = `99` and empty `RoleNameDE`/`RoleNameEN` (clueless person card)
 4. Place a matching background image in `images/` and reference it in `ScenarioImage`
 5. Run `start_card_generation.bat`
 
 The script reads all CSV rows automatically -- no code changes required.
+
+Background images are generated with ChatGPT Image 2. The prompts are documented in [`image_prompts.md`](image_prompts.md) — Part 1 contains the shared style and lighting instructions, Part 2 has the scene description for each scenario.
 
 ---
 
@@ -148,8 +150,9 @@ scenario_overview.rb               # Ruby/Squib script: scenario overview sheet
 card_data_front_sides.csv          # Card content: scenarios and roles (DE + EN)
 card_data_back_sides_and_misc.csv  # Back side content + misc texts per language
 layout.yml                         # Squib layout definitions: positions, sizes, colors, fonts
+image_prompts.md                   # AI prompts used to generate the background images
 images/                            # Background images and card backs
-output/                            # Generated PDFs generated PDFs
+output/                            # Generated PDFs
 test/                              # Automated tests
 ```
 

@@ -39,13 +39,13 @@
 5;Kantinen-Mittagspause;6;Der Mainsplainer;Lunch Break;The Mainsplainer;background_lunch_break.png
 5;Kantinen-Mittagspause;7;Koch;Lunch Break;Chef;background_lunch_break.png
 ;;;;;;
-6;ISO-Audit;1;Azubi;Lunch Break;Intern;background_iso_audit.png
-6;ISO-Audit;2;Auditor;Lunch Break;Auditor;background_iso_audit.png
-6;ISO-Audit;3;QMB - Qualitätsmanagmentbeauftragte;Lunch Break;Quality Management Represantitive;background_iso_audit.png
-6;ISO-Audit;4;Projektmitarbeiterin;Lunch Break;Project team member;background_iso_audit.png
-6;ISO-Audit;5;Der nicht auditierte externe Kollege;Lunch Break;The unaudited external colleague;background_iso_audit.png
-6;ISO-Audit;6;Der schon innerlich gekündigte Kollege;Lunch Break;The colleague who has already mentally checked out;background_iso_audit.png
-6;ISO-Audit;7;Projektleiter;Lunch Break;Project Manager;background_iso_audit.png
+6;ISO-Audit;1;Azubi;ISO Audit;Intern;background_iso_audit.png
+6;ISO-Audit;2;Auditor;ISO Audit;Auditor;background_iso_audit.png
+6;ISO-Audit;3;QMB - Qualitätsmanagmentbeauftragte;ISO Audit;Quality Management Represantitive;background_iso_audit.png
+6;ISO-Audit;4;Projektmitarbeiterin;ISO Audit;Project team member;background_iso_audit.png
+6;ISO-Audit;5;Der nicht auditierte externe Kollege;ISO Audit;The unaudited external colleague;background_iso_audit.png
+6;ISO-Audit;6;Der schon innerlich gekündigte Kollege;ISO Audit;The colleague who has already mentally checked out;background_iso_audit.png
+6;ISO-Audit;7;Projektleiter;ISO Audit;Project Manager;background_iso_audit.png
 ;;;;;;
 7;Brandschutzübung;1;Brandschutzbeauftrager;Fire Drill;Fire Protection Represantitive;background_fire_drill.png
 7;Brandschutzübung;2;Der Desorientierte;Fire Drill;The Disoriented Colleague;background_fire_drill.png
