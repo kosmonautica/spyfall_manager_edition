@@ -28,7 +28,9 @@
       "Bash(pip install *)",
       "Bash(pip3 install *)",
       "Bash(sudo apt-get install -y imagemagick)",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "Bash(git merge rename-to-meeting-impossible --no-ff -m 'Rename game to Meeting Impossible; make game name configurable *)",
+      "Bash(git commit *)"
     ]
   }
 }
