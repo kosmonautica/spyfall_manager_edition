@@ -156,8 +156,8 @@ Im Hintergrund sind zwei Katzen als Rauchwolke und Flamme verkleidet. Die Verkle
 -----
 
 # The Clueless Person
+## SCENE
+Eine weibliche Katze im Portrait im Stil eines Mugshot. Die Katze sieht etwas panisch, unsicher und verängstigt aus. Der Hintergrund ist ein Meetingraum. An der Decke ist ein Ventilator. Oberhalb der Katze ist etwas freier Platz, der später mit einer Schrit überdeckt werden kann.
+
 ## ABSURDITY
 Anstatt einer Mugshot-Tafel hält sie ein Schild mit der Aufschrift: „I have no clue“ in Handschrift. 
-
-## FRAMING
-Medium wide shot, slightly low angle, warm office light from the side.
