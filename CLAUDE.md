@@ -104,7 +104,7 @@ image_prompts.md                 # AI prompts used to generate background images
 test/test_card_data.rb           # Minitest suite for card data and card_generator.rb
 test/test_scenario_overview.rb   # Minitest suite for scenario_overview.rb
 images/                          # All images (backgrounds, back sides, sketches, photos)
-output/                          # Generated PDFs (do not commit)
+output/                          # Generated PDFs (committed to the repository)
 ```
 
 ## Layout System

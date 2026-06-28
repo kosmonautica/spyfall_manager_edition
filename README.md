@@ -137,7 +137,25 @@ The game name is configured in `card_data_back_sides_and_misc.csv` — one entry
 
 The script reads all CSV rows automatically -- no code changes required.
 
-Background images are generated with ChatGPT Image 2. The prompts are documented in [`image_prompts.md`](image_prompts.md) — Part 1 contains the shared style and lighting instructions, Part 2 has the scene description for each scenario.
+For generating background images for new scenarios, see [Generating Background Images](#generating-background-images) below.
+
+---
+
+## Generating Background Images
+
+Background images are generated with **ChatGPT Image 2**. All prompts are documented in [`image_prompts.md`](image_prompts.md), which has two parts:
+
+- **Part 1** — the shared base prompt: art style, lighting, company setting, character descriptions, and composition rules. This part is identical for every image.
+- **Part 2** — one entry per scenario, each with a `SCENE` and an `ABSURDITY` section describing what is happening and what the subtle surreal detail is.
+
+To generate a background image for a new scenario:
+
+1. Copy Part 1 from `image_prompts.md`
+2. Replace the `SCENE` and `ABSURDITY` placeholders with your own scene description
+3. Feed the complete prompt to ChatGPT Image 2
+4. Save the result as a PNG (landscape, 930×630 px) in the `images/` folder
+5. Reference the filename in the `ScenarioImage` column of `card_data_front_sides.csv`
+6. Add the new prompt to Part 2 of `image_prompts.md` so all prompts stay documented together
 
 ---
 
