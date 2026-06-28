@@ -6,9 +6,8 @@ In this game, one player takes on exactly that role. This person ends up in a me
 
 The game was collaboratively created and playtested at the **Agile Coach Camp Germany, June 2026, Rückersbach** by Irina Tolliszus, Hannah Schlamann, Martin Halfen, Martin Luig, Patrick Lehrbach, Frank Link, Tobias Wilmeroth and Udo Wiegärtner.
 
-| | |
-|---|---|
-| ![Cards](images/photo_printout_cards.jpg) | ![Pages](images/photo_printout_pages.jpg) |
+
+![Cards](images/photo_printout_cards.jpg)
 
 ---
 
